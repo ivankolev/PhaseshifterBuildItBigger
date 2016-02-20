@@ -9,12 +9,13 @@ package com.phaseshiftlab.phaseshifterbuilditbigger.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.phaseshiftlab.phaseshifterbuilditbigger.lib.JokeSupplier;
 
 import javax.inject.Named;
 
 /** An endpoint class we are exposing */
 @Api(
-  name = "myApi",
+  name = "jokesApi",
   version = "v1",
   namespace = @ApiNamespace(
     ownerDomain = "backend.phaseshifterbuilditbigger.phaseshiftlab.com",
@@ -22,13 +23,14 @@ import javax.inject.Named;
     packagePath=""
   )
 )
-public class MyEndpoint {
+public class JokesEndpoint {
 
-    /** A simple endpoint method that takes a name and says Hi back */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
-        MyBean response = new MyBean();
-        response.setData("Hi, " + name);
+    /** A simple endpoint method that returns a random joke */
+    @ApiMethod(name = "sayJoke")
+    public JokesBean sayJoke() {
+        JokesBean response = new JokesBean();
+        String joke = JokeSupplier.supplyJoke();
+        response.setJoke(joke);
 
         return response;
     }
