@@ -1,10 +1,9 @@
 package com.phaseshiftlab.phaseshifterbuilditbigger;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.view.MenuItem;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.phaseshiftlab.jokedisplaylibrary.JokeDisplayActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view){
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+        new EndpointsAsyncTask(new EndpointsAsyncTask.AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                Intent myIntent = new Intent(MainActivity.this, JokeDisplayActivity.class);
+                myIntent.putExtra("joke", output);
+                startActivity(myIntent);
+            }
+        }).execute();
     }
 }
