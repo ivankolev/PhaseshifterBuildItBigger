@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static java.util.concurrent.ThreadLocalRandom.*;
+
 public class JokeSupplier {
 
     public static String supplyJoke(){
@@ -11,8 +13,8 @@ public class JokeSupplier {
         Integer jokesLength;
         try {
             prop.loadFromXML(JokeSupplier.class.getResourceAsStream("/jokes.xml"));
-            jokesLength = prop.size() -1;
-            int rand = ThreadLocalRandom.current().nextInt(0,jokesLength);
+            jokesLength = prop.size() - 1;
+            int rand = current().nextInt(0,jokesLength);
             return prop.getProperty("joke" + rand);
         } catch (IOException e) {
             e.printStackTrace();
