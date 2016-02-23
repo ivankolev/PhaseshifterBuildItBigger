@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.phaseshiftlab.phaseshifterbuilditbigger">
+
+    <!--Include the AdActivity configChanges and theme. -->
+    <activity android:name="com.google.android.gms.ads.AdActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+        android:theme="@android:style/Theme.Translucent" />
+
+</manifest>

@@ -4,6 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     dexOptions {
+        preDexLibraries = false
         javaMaxHeapSize "4g"
     }
     defaultConfig {
